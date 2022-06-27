@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.7 on darwin)" generated="20220624 09:49:37.872" rpa="false" schemaversion="3">
+<suite id="s1" name="testDemo7" source="/Users/akash/Desktop/RobotFramework/tests/testDemo7.robot">
+<test id="s1-t1" name="Play around with Dictinoary" line="11">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{data}</var>
+<arg>name=rahulshetty</arg>
+<arg>course=robot</arg>
+<arg>website=rahulshettyacademy.com</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220624 09:49:37.889" level="INFO">&amp;{data} = { name=rahulshetty | course=robot | website=rahulshettyacademy.com }</msg>
+<status status="PASS" starttime="20220624 09:49:37.889" endtime="20220624 09:49:37.889"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${data}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220624 09:49:37.889" level="INFO">{'name': 'rahulshetty', 'course': 'robot', 'website': 'rahulshettyacademy.com'}</msg>
+<status status="PASS" starttime="20220624 09:49:37.889" endtime="20220624 09:49:37.890"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${data}</arg>
+<arg>name</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" starttime="20220624 09:49:37.890" endtime="20220624 09:49:37.890"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${data}[name]</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220624 09:49:37.890" level="INFO">rahulshetty</msg>
+<status status="PASS" starttime="20220624 09:49:37.890" endtime="20220624 09:49:37.890"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${url}</var>
+<arg>${data}</arg>
+<arg>website</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20220624 09:49:37.890" level="INFO">${url} = rahulshettyacademy.com</msg>
+<status status="PASS" starttime="20220624 09:49:37.890" endtime="20220624 09:49:37.890"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220624 09:49:37.891" level="INFO">rahulshettyacademy.com</msg>
+<status status="PASS" starttime="20220624 09:49:37.890" endtime="20220624 09:49:37.891"/>
+</kw>
+<tag>API</tag>
+<status status="PASS" starttime="20220624 09:49:37.888" endtime="20220624 09:49:37.891"/>
+</test>
+<test id="s1-t2" name="Add Book into Library DataBase" line="21">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{req_body}</var>
+<arg>name=${book_name}</arg>
+<arg>isbn=947303</arg>
+<arg>aisle=324534</arg>
+<arg>author=rahulshetty</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220624 09:49:37.892" level="INFO">&amp;{req_body} = { name=RobotFramework | isbn=947303 | aisle=324534 | author=rahulshetty }</msg>
+<status status="PASS" starttime="20220624 09:49:37.891" endtime="20220624 09:49:37.892"/>
+</kw>
+<kw name="POST">
+<var>${response}</var>
+<arg>${base_url}/Library/Addbook.php</arg>
+<arg>json=${req_body}</arg>
+<arg>expected_status=200</arg>
+<msg timestamp="20220624 09:49:37.893" level="FAIL">No keyword with name 'POST' found.</msg>
+<status status="FAIL" starttime="20220624 09:49:37.893" endtime="20220624 09:49:37.893"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20220624 09:49:37.893" endtime="20220624 09:49:37.893"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${response.json()}</arg>
+<arg>ID</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20220624 09:49:37.894" endtime="20220624 09:49:37.894"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${book_id}</var>
+<arg>${response.json()}</arg>
+<arg>ID</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" starttime="20220624 09:49:37.894" endtime="20220624 09:49:37.894"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${book_id}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20220624 09:49:37.894" endtime="20220624 09:49:37.894"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${book_id}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20220624 09:49:37.894" endtime="20220624 09:49:37.894"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>successfully added</arg>
+<arg>${response.json()}[Msg]</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20220624 09:49:37.894" endtime="20220624 09:49:37.894"/>
+</kw>
+<kw name="status should be">
+<arg>200</arg>
+<arg>${response}</arg>
+<status status="NOT RUN" starttime="20220624 09:49:37.895" endtime="20220624 09:49:37.895"/>
+</kw>
+<tag>API</tag>
+<status status="FAIL" starttime="20220624 09:49:37.891" endtime="20220624 09:49:37.896">No keyword with name 'POST' found.</status>
+</test>
+<test id="s1-t3" name="Get the Book Details which got added" line="33">
+<kw name="GET">
+<var>${get_response}</var>
+<arg>${base_url}/Library/GetBook.php</arg>
+<arg>params=ID=${book_id}</arg>
+<arg>expected_status=200</arg>
+<msg timestamp="20220624 09:49:37.898" level="FAIL">No keyword with name 'GET' found. Did you mean:
+    BuiltIn.Get Time</msg>
+<status status="FAIL" starttime="20220624 09:49:37.898" endtime="20220624 09:49:37.898"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${get_response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20220624 09:49:37.898" endtime="20220624 09:49:37.898"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${book_name}</arg>
+<arg>${get_response.json()}[0][book_name]</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20220624 09:49:37.898" endtime="20220624 09:49:37.898"/>
+</kw>
+<tag>API</tag>
+<status status="FAIL" starttime="20220624 09:49:37.896" endtime="20220624 09:49:37.898">No keyword with name 'GET' found. Did you mean:
+    BuiltIn.Get Time</status>
+</test>
+<test id="s1-t4" name="Delete the Book from database" line="40">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{delete_req}</var>
+<arg>ID=${book_id}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220624 09:49:37.899" level="INFO">&amp;{delete_req} = { ID= }</msg>
+<status status="PASS" starttime="20220624 09:49:37.898" endtime="20220624 09:49:37.899"/>
+</kw>
+<kw name="POST">
+<var>${delete_resp}</var>
+<arg>${base_url}/Library/DeleteBook.php</arg>
+<arg>json=${delete_req}</arg>
+<arg>expected_status=200</arg>
+<msg timestamp="20220624 09:49:37.900" level="FAIL">No keyword with name 'POST' found.</msg>
+<status status="FAIL" starttime="20220624 09:49:37.900" endtime="20220624 09:49:37.900"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${delete_resp.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20220624 09:49:37.900" endtime="20220624 09:49:37.900"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>book is successfully deleted</arg>
+<arg>${delete_resp.json()}[msg]</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" starttime="20220624 09:49:37.900" endtime="20220624 09:49:37.900"/>
+</kw>
+<tag>API</tag>
+<status status="FAIL" starttime="20220624 09:49:37.898" endtime="20220624 09:49:37.900">No keyword with name 'POST' found.</status>
+</test>
+<status status="FAIL" starttime="20220624 09:49:37.873" endtime="20220624 09:49:37.901"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="3" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="3" skip="0">API</stat>
+</tag>
+<suite>
+<stat pass="1" fail="3" skip="0" id="s1" name="testDemo7">testDemo7</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20220624 09:49:37.888" level="ERROR">Error in file '/Users/akash/Desktop/RobotFramework/tests/testDemo7.robot' on line 3: Importing library 'RequestsLibrary' failed: ModuleNotFoundError: No module named 'RequestsLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /opt/anaconda3/bin
+  /opt/anaconda3/lib/python39.zip
+  /opt/anaconda3/lib/python3.9
+  /opt/anaconda3/lib/python3.9/lib-dynload
+  /opt/anaconda3/lib/python3.9/site-packages
+  /opt/anaconda3/lib/python3.9/site-packages/aeosa
+  /opt/anaconda3/lib/python3.9/site-packages/locket-0.2.1-py3.9.egg</msg>
+</errors>
+</robot>
